@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Spellingavontuur</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Content will be loaded from templates -->
+    </div>
+
+    <!-- Templates -->
+    <template id="start-screen-template">
+        <div id="start-screen">
+            <h1>Welkom bij Pokémon Spellingavontuur!</h1>
+            <p>Voer je naam in en kies je starter Pokémon om te beginnen.</p>
+            <input type="text" id="player-name" placeholder="Jouw naam">
+            <div id="starter-selection">
+                <div class="starter-option" data-pokemon="Bulbasaur">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
+                    <span>Bulbasaur</span>
+                </div>
+                <div class="starter-option" data-pokemon="Charmander">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
+                    <span>Charmander</span>
+                </div>
+                <div class="starter-option" data-pokemon="Squirtle">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="Squirtle">
+                    <span>Squirtle</span>
+                </div>
+            </div>
+            <button id="start-game">Start Avontuur</button>
+        </div>
+    </template>
+
+    <template id="main-game-template">
+        <div id="main-game">
+            <div id="player-info">
+                <span id="player-name-display"></span>
+                <div id="player-pokemon">
+                    <img id="player-pokemon-sprite" src="" alt="Player Pokémon">
+                    <span id="player-pokemon-name"></span>
+                    <span id="player-pokemon-level"></span>
+                </div>
+                <button id="pokedex-button">Pokédex</button>
+            </div>
+            <div id="game-world">
+                <!-- Game content will be dynamically loaded here -->
+            </div>
+            <div id="dialog-box" class="hidden">
+                <p id="dialog-text"></p>
+                <div id="feedback" class="hidden"></div>
+                <input type="text" id="spell-input" class="hidden">
+                <button id="spell-submit" class="hidden">Bevestig</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="battle-scene-template">
+        <div id="battle-scene">
+            <div id="opponent-pokemon">
+                <img id="opponent-sprite" src="" alt="Opponent Pokémon">
+                <span id="opponent-name"></span>
+                <span id="opponent-level"></span>
+                <div class="hp-bar">
+                    <div id="opponent-hp" class="hp"></div>
+                </div>
+            </div>
+            <div id="player-battle-pokemon">
+                 <img id="player-battle-sprite" src="" alt="Player Pokémon">
+                <span id="player-battle-name"></span>
+                <span id="player-battle-level"></span>
+                 <div class="hp-bar">
+                    <div id="player-hp" class="hp"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div id="pokedex-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Pokédex</h2>
+            <div id="pokedex-entries"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/models/Player.js"></script>
+    <script src="js/models/Pokemon.js"></script>
+    <script src="js/models/GameWorld.js"></script>
+    <script src="js/models/Battle.js"></script>
+    <script src="js/models/Game.js"></script>
+    <script src="js/words.js"></script>
+    <script src="js/views/StartView.js"></script>
+    <script src="js/views/GameView.js"></script>
+    <script src="js/controllers/GameController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
