@@ -2,6 +2,7 @@ class Game {
     constructor() {
         this.player = null;
         this.world = new GameWorld();
+        this.initialDialogCompleted = false;
     }
 
     startGame(playerName, pokemonName) {

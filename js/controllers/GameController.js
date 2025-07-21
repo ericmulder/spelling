@@ -3,6 +3,7 @@ class GameController {
         this.game = new Game();
         this.startView = new StartView();
         this.gameView = new GameView(); // We'll implement this later
+        this.isDialogActive = false;
     }
 
     start() {
@@ -34,6 +35,8 @@ class GameController {
     }
 
     handleKeyDown(event) {
+        if (this.isDialogActive) return;
+
         let dx = 0, dy = 0;
         switch (event.key) {
             case 'ArrowUp': dy = -1; break;
@@ -93,12 +96,24 @@ class GameController {
 
     checkCurrentLocation() {
         const location = this.game.world.getCurrentLocation();
-        if (location && location.npc === "Professor Oak") {
-            this.showDialog(`Welkom, ${this.game.player.name}! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: \`Ik ben klaar voor mijn Pokémon avontuur.\``, true);
+        if (location && location.npc === "Professor Oak" && !this.game.initialDialogCompleted) {
+            this.showDialog(`Welkom, ${this.game.player.name}! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: \`Ik ben klaar voor mijn Pokémon avontuur.\``, true, (answer) => {
+                if (answer.toLowerCase() === "ik ben klaar voor mijn pokémon avontuur.") {
+                    this.showDialog("Goed gedaan! Je avontuur kan beginnen.", false, () => {
+                        this.game.initialDialogCompleted = true;
+                        this.gameView.renderMap(this.game.world);
+                    });
+                } else {
+                    this.showDialog("Dat is niet helemaal juist. Probeer het opnieuw.", true, () => {
+                        this.checkCurrentLocation(); // Show the prompt again
+                    });
+                }
+            });
         }
     }
 
     showDialog(text, showInput, callback) {
+        this.isDialogActive = true;
         const dialogBox = document.getElementById('dialog-box');
         const dialogText = document.getElementById('dialog-text');
         const spellInput = document.getElementById('spell-input');
@@ -120,7 +135,12 @@ class GameController {
         } else {
             spellInput.classList.add('hidden');
             spellSubmit.classList.add('hidden');
-            setTimeout(() => dialogBox.classList.add('hidden'), 2000); // Auto-hide dialog
+            setTimeout(() => {
+                dialogBox.classList.add('hidden');
+                this.isDialogActive = false;
+                // if there's a callback, and we are not showing input, call it.
+                if(callback) callback();
+            }, 2000); // Auto-hide dialog
         }
     }
 
