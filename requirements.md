@@ -30,7 +30,7 @@ De speler kruipt in de huid van een nieuwe Pokémon Trainer. Na het invoeren van
     * Viridian City (stadje met een Pokémon Center)
     * Viridian Forest (een donkerder bos met andere Pokémon)
 * **NPC's (Non-Player Characters):** De speler kan interactie hebben met personages zoals Professor Oak en Nurse Joy. Deze interacties starten dialogen en soms een spellingsopdracht.
-    * **Voorbeeld (Professor Oak):** "Welkom, [Naam speler]! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: `Ik ben er klaar voor`"
+    * **Voorbeeld (Professor Oak):** "Welkom, [Naam speler]! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: `Ik ben klaar voor mijn Pokémon avontuur.`"
 
 ### 2.3. De Spelling-Gameplay (Kernmechanisme)
 

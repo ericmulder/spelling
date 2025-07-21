@@ -27,7 +27,7 @@ class GameView {
                 cell.dataset.y = y;
                 if (x === gameWorld.playerX && y === gameWorld.playerY) {
                     const playerSprite = document.createElement('img');
-                    playerSprite.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif'; // Placeholder for player sprite
+                    playerSprite.src = 'https://i.imgur.com/7N3p6lG.png'; // Trainer sprite
                     cell.appendChild(playerSprite);
                 }
                 gameWorldContainer.appendChild(cell);
