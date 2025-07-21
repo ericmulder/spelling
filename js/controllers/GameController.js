@@ -97,8 +97,8 @@ class GameController {
     checkCurrentLocation() {
         const location = this.game.world.getCurrentLocation();
         if (location && location.npc === "Professor Oak" && !this.game.initialDialogCompleted) {
-            this.showDialog(`Welkom, ${this.game.player.name}! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: \`Ik ben klaar voor mijn Pokémon avontuur.\``, true, (answer) => {
-                if (answer.toLowerCase() === "ik ben klaar voor mijn pokémon avontuur.") {
+            this.showDialog(`Welkom, ${this.game.player.name}! Om je reis te beginnen, moet je bewijzen dat je goed instructies kunt lezen. Typ de volgende zin correct over: \`Ik ben er klaar voor\``, true, (answer) => {
+                if (answer.toLowerCase() === "Ik ben er klaar voor") {
                     this.showDialog("Goed gedaan! Je avontuur kan beginnen.", false, () => {
                         this.game.initialDialogCompleted = true;
                         this.gameView.renderMap(this.game.world);
